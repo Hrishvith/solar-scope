@@ -227,7 +227,16 @@ If the project is in a OneDrive (or other synced) folder, `--reload` can miss fi
 code (for example a 404 on a new endpoint), or hang while reloading. Stop the server (Ctrl+C) and start it again
 after changing backend code. Editing `backend/data/*.json` needs no restart.
 
-Put a trained `solarscope.onnx` (+ `.json`) in `models/` to enable detection; without it you can paint the roof by hand.
+**AI roof detection (optional):** the trained model is too large for the code repository, so it is published as a
+release download. Put it in `models/` (next to `solarscope.json`) and restart the server:
+
+```powershell
+curl.exe -L -o models/solarscope.onnx https://github.com/Hrishvith/solar-scope/releases/download/v1.0/solarscope.onnx
+```
+
+(or download `solarscope.onnx` by hand from the [v1.0 release](https://github.com/Hrishvith/solar-scope/releases/tag/v1.0);
+on macOS / Linux use `curl -L -o ...`). The top bar then shows "Model: U-Net resnet34". Without the model everything
+else works: paint the roof by hand with the brush.
 
 ## Train the model
 
